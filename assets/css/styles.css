@@ -952,8 +952,15 @@ body.nav-open { overflow: hidden; }
 .roster-row:hover { background: var(--cream); }
 .roster-num {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--green-600);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  background: var(--green-600);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
   text-align: center;
 }
 .roster-name { font-weight: 700; }
