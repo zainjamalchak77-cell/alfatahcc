@@ -208,7 +208,7 @@ p { text-wrap: pretty; }
 .section-deep { background: var(--green-950); color: var(--cream); }
 .section-paper { background: var(--paper); }
 
-.section-dark p, .section-deep p { color: rgba(246, 244, 237, 0.78); }
+.section-dark p, .section-deep p, .page-hero p { color: rgba(246, 244, 237, 0.78); }
 
 .eyebrow {
   display: inline-flex;
@@ -223,7 +223,9 @@ p { text-wrap: pretty; }
 }
 .section-dark .eyebrow,
 .section-deep .eyebrow,
-.hero .eyebrow { color: var(--gold); }
+.hero .eyebrow,
+.page-hero .eyebrow,
+.cta-band .eyebrow { color: var(--gold); }
 
 .eyebrow::before {
   content: "";
@@ -255,7 +257,10 @@ p { text-wrap: pretty; }
 }
 
 .lead { font-size: var(--fs-lead); color: var(--ink-soft); max-width: 60ch; }
-.section-dark .lead, .section-deep .lead { color: rgba(246, 244, 237, 0.8); }
+.section-dark .lead,
+.section-deep .lead,
+.page-hero .lead,
+.cta-band .lead { color: rgba(246, 244, 237, 0.82); }
 
 .stack > * + * { margin-top: 1.1em; }
 
@@ -343,6 +348,12 @@ p { text-wrap: pretty; }
 
 .btn-sm { padding: 0.65rem 1.25rem; font-size: 0.78rem; }
 
+/* On very narrow phones a long button label with nowrap pushes the page
+   sideways. Let it wrap rather than break the layout. */
+@media (max-width: 400px) {
+  .btn { white-space: normal; text-align: center; max-width: 100%; }
+}
+
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -377,7 +388,9 @@ p { text-wrap: pretty; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(4, 23, 11, 0.75), rgba(4, 23, 11, 0));
+  background: linear-gradient(180deg, rgba(4, 23, 11, 0.88) 0%, rgba(4, 23, 11, 0.45) 60%, rgba(4, 23, 11, 0) 100%);
+  /* Deliberately strong: the nav sits over a photo, and a future photo swap
+     must not be able to make the links unreadable. */
   z-index: -1;
   transition: opacity 0.3s var(--ease);
 }
@@ -718,6 +731,13 @@ body.nav-open { overflow: hidden; }
    9. Cards, media and grids
    -------------------------------------------------------------------------- */
 .grid { display: grid; gap: clamp(1.25rem, 1rem + 1.5vw, 2rem); }
+/* Grid and flex children default to min-width:auto, so anything with an
+   intrinsic minimum (a wide table, a long word) refuses to shrink and pushes
+   the whole page sideways. This is the fix. */
+.grid > *,
+.split-media > *,
+.nextmatch > *,
+.section-head.split > * { min-width: 0; }
 .grid-2 { grid-template-columns: 1fr; }
 .grid-3 { grid-template-columns: 1fr; }
 .grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -937,6 +957,7 @@ body.nav-open { overflow: hidden; }
   text-align: center;
 }
 .roster-name { font-weight: 700; }
+.roster-name .cap { color: var(--green-600); font-weight: 800; font-size: 0.78rem; }
 .roster-sub { font-size: 0.8rem; color: var(--muted); }
 .roster-role {
   font-size: 0.7rem;
@@ -1053,8 +1074,130 @@ body.nav-open { overflow: hidden; }
   color: var(--ink-soft);
 }
 .badge-win { background: rgba(98, 184, 76, 0.2); color: var(--green-600); }
-.badge-loss { background: rgba(223, 59, 44, 0.14); color: var(--red); }
+.badge-loss { background: rgba(223, 59, 44, 0.14); color: #B02718; }
 .badge-next { background: var(--gold); color: var(--green-900); }
+
+/* Light cards sitting inside a dark section: the section's paragraph colour
+   (cream) has higher specificity than the component's own colour, which made
+   this text render cream on white. Reassert it here. */
+.section-dark .fixture p,
+.section-deep .fixture p,
+.section-dark .fixture,
+.section-deep .fixture { color: var(--ink); }
+.fixture p.fixture-comp { color: var(--gold-dark); }
+.fixture p.fixture-venue { color: var(--muted); }
+.section-dark .table-wrap, .section-deep .table-wrap,
+.section-dark .roster, .section-deep .roster,
+.section-dark .sponsor, .section-deep .sponsor { color: var(--ink); }
+.section-dark .table-wrap p, .section-deep .table-wrap p,
+.section-dark .roster p, .section-deep .roster p,
+.section-dark .sponsor p, .section-deep .sponsor p { color: var(--ink); }
+
+/* Next match feature card
+   -------------------------------------------------------------------------- */
+.nextmatch {
+  display: grid;
+  gap: clamp(1.75rem, 1rem + 3vw, 3rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(700px 300px at 90% 0%, rgba(98, 184, 76, 0.16), transparent 70%),
+    var(--green-900);
+  color: var(--cream);
+}
+@media (min-width: 900px) { .nextmatch { grid-template-columns: 0.85fr 1fr; } }
+
+.nextmatch-figure {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--line-dark);
+}
+.nextmatch-figure img { width: 100%; }
+
+.nextmatch-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--green-900);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.nextmatch-teams {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.nextmatch-teams .vs { color: var(--gold); display: block; font-size: 0.5em; margin: 0.35rem 0; }
+.nextmatch-meta {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0.9rem;
+}
+.nextmatch-meta li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-size: 0.95rem;
+  color: rgba(246, 244, 237, 0.85);
+}
+.nextmatch-meta svg { width: 18px; height: 18px; color: var(--gold); margin-top: 3px; }
+.nextmatch-meta strong { color: var(--cream); font-weight: 700; }
+
+.squadlist {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.4rem 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  font-size: 0.88rem;
+}
+@media (min-width: 620px) { .squadlist { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.squadlist li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  color: rgba(246, 244, 237, 0.85);
+}
+.squadlist .num {
+  font-family: var(--font-display);
+  color: var(--gold);
+  min-width: 1.4em;
+  font-size: 0.95rem;
+}
+.squadlist .cap { color: var(--gold); font-weight: 700; font-size: 0.72rem; }
+
+/* Competition badge row */
+.comp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.comp-meta span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-dark);
+  color: rgba(246, 244, 237, 0.8);
+}
+.section-paper .comp-meta span { border-color: var(--line); color: var(--ink-soft); }
 
 /* Placeholder notice */
 .notice {
@@ -1293,17 +1436,25 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
   color: var(--ink-soft);
   margin-bottom: 0.45rem;
 }
-.field .req { color: var(--red); }
+.field .req { color: #C42A1C; }
+.section-dark .field .req,
+.section-deep .field .req { color: #FF8A7A; }
 .field input,
 .field select,
 .field textarea {
   width: 100%;
   padding: 0.85rem 1rem;
   background: var(--paper);
+  /* Explicit ink colour. Inputs inherit `color` from their parent, so inside a
+     dark section they would render white text on a white field. */
+  color: var(--ink);
   border: 1.5px solid var(--line);
   border-radius: var(--radius-sm);
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); opacity: 1; }
+.field select { appearance: none; background-image: none; }
 .field textarea { min-height: 150px; resize: vertical; }
 .field input:focus,
 .field select:focus,
@@ -1313,6 +1464,15 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
   box-shadow: 0 0 0 4px rgba(31, 122, 61, 0.14);
 }
 .field-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+
+/* Forms also appear inside cards on dark sections, where the default ink
+   label colour is unreadable. */
+.section-dark .field label,
+.section-deep .field label { color: rgba(246, 244, 237, 0.82); }
+.section-dark .field-hint,
+.section-deep .field-hint { color: rgba(246, 244, 237, 0.6); }
+.section-dark .card h3,
+.section-deep .card h3 { color: var(--cream); }
 .form-status {
   margin-top: 1rem;
   padding: 0.9rem 1.1rem;
@@ -1374,7 +1534,7 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
 .footer-brand { display: flex; align-items: center; gap: 0.875rem; margin-bottom: 1.1rem; }
 .footer-brand img { width: 54px; }
 .footer-brand .brand-name { color: var(--cream); font-size: 1.3rem; }
-.footer-col h4 {
+.footer-col h3 {
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 800;
@@ -1413,6 +1573,33 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
   color: rgba(246, 244, 237, 0.5);
 }
 .footer-bottom a:hover { color: var(--gold); }
+
+/* --------------------------------------------------------------------------
+   16b. Touch targets
+   Small text links are fine with a mouse but hard to hit with a thumb.
+   On touch devices give them room without changing how they look.
+   -------------------------------------------------------------------------- */
+@media (hover: none), (max-width: 900px) {
+  .footer-col a,
+  .crumbs a,
+  .info-value a,
+  .link-arrow,
+  .nav-list a,
+  .mobile-nav a,
+  .socials a,
+  .roster-row a,
+  .lightbox-close,
+  .lightbox-nav {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer-col ul { gap: 0.25rem; }
+  .info-value a { padding-block: 0.35rem; }
+  .chip { min-height: 44px; }
+  /* Keep the two links on one contact row from colliding */
+  .info-value a + a { margin-left: 0.15rem; }
+}
 
 /* --------------------------------------------------------------------------
    17. Motion

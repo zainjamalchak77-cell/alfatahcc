@@ -332,6 +332,11 @@
     initYear();
   }
 
+  // Tells the inline head script that this file loaded. If it never runs, that
+  // script strips the "js" class after 3s so hidden sections become visible
+  // again rather than the page appearing blank.
+  window.__afccReady = true;
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {

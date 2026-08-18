@@ -2,10 +2,10 @@
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.classList.add("js");</script>
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__afccReady){document.documentElement.classList.remove("js");}},3000);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Al Fatah Cricket Club | One Club. One Family. One Goal.</title>
-<meta name="description" content="Al Fatah Cricket Club is a Melbourne based cricket club founded in 2021. Trugannina Premier League champions and heading into the Darebin Chargers T10 League 2026. New players and supporters welcome.">
+<meta name="description" content="Al Fatah Cricket Club is a Melbourne based cricket club founded in 2021. Truganina Premier League champions and heading into the Darebin Chargers T10 League 2026. New players and supporters welcome.">
 <link rel="canonical" href="https://alfatahcc.com/">
 <meta name="theme-color" content="#04170B">
 
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Al Fatah Cricket Club">
 <meta property="og:title" content="Al Fatah Cricket Club | One Club. One Family. One Goal.">
-<meta property="og:description" content="Melbourne based cricket club founded in 2021. Trugannina Premier League champions. Join the green and gold.">
+<meta property="og:description" content="Melbourne based cricket club founded in 2021. Truganina Premier League champions. Join the green and gold.">
 <meta property="og:url" content="https://alfatahcc.com/">
 <meta property="og:image" content="https://alfatahcc.com/assets/img/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,7 +27,9 @@
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin.woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/team-champions.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/team-champions-1400.jpg"
+      imagesrcset="assets/img/team-champions-800.jpg 800w, assets/img/team-champions-1400.jpg 1400w, assets/img/team-champions.jpg 2000w"
+      imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <script type="application/ld+json">
@@ -42,6 +44,11 @@
   "logo": "https://alfatahcc.com/assets/img/logo.svg",
   "image": "https://alfatahcc.com/assets/img/og-image.jpg",
   "slogan": "One Club. One Family. One Goal.",
+  "memberOf": [
+    { "@type": "SportsOrganization", "name": "Darebin Chargers League" },
+    { "@type": "SportsOrganization", "name": "NWS League" },
+    { "@type": "SportsOrganization", "name": "Truganina Premier League" }
+  ],
   "telephone": "+61450088786",
   "sameAs": [
     "https://www.facebook.com/people/Al-Fatah-Cricket-Club/100093400394322/",
@@ -56,7 +63,7 @@
   "member": [
     { "@type": "Person", "name": "Faisal Hayat", "jobTitle": "President and Captain" },
     { "@type": "Person", "name": "Tahir Saeed", "jobTitle": "Vice Captain and Senior Analyst" },
-    { "@type": "Person", "name": "Jamal", "jobTitle": "Core Member" }
+    { "@type": "Person", "name": "Khawaja Jamal Chak", "jobTitle": "Core Member" }
   ]
 }
 </script>
@@ -113,7 +120,13 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero-media">
-      <img src="assets/img/team-champions.jpg" alt="Al Fatah Cricket Club squad with the Trugannina Premier League trophy and winners medals" width="2000" height="1500" fetchpriority="high">
+      <img src="assets/img/team-champions-1400.jpg"
+           srcset="assets/img/team-champions-800.jpg 800w,
+                   assets/img/team-champions-1400.jpg 1400w,
+                   assets/img/team-champions.jpg 2000w"
+           sizes="100vw"
+           alt="Al Fatah Cricket Club squad with the Truganina Premier League trophy and winners medals"
+           width="2000" height="1500" fetchpriority="high">
     </div>
     <div class="hero-glow" aria-hidden="true"></div>
 
@@ -126,16 +139,17 @@
       </h1>
       <p class="lead">
         Al Fatah Cricket Club was built by a group of friends who wanted more than a
-        weekend game. Four seasons later we are league champions, and the green and
-        gold means something across Melbourne.
+        weekend game. Five seasons on we are Friendship Cup winners with a squad of
+        twenty four, competing across three Melbourne leagues.
       </p>
       <div class="hero-actions">
         <a class="btn" href="contact.html#join">Play for Al Fatah</a>
         <a class="btn btn-outline" href="fixtures.html">Fixtures &amp; Results</a>
       </div>
       <p class="hero-badges">
-        <span>Trugannina Premier League Champions</span>
-        <span>Darebin Chargers T10 League 2026</span>
+        <span>TPL Friendship Cup Winners 2025</span>
+        <span>Three leagues in 2026</span>
+        <span>24 player squad</span>
       </p>
     </div>
   </section>
@@ -161,6 +175,32 @@
       </div>
     </div>
   </div>
+
+  <!-- ===================== NEXT MATCH ===================== -->
+  <section class="section-tight section-deep">
+    <div class="stripes" aria-hidden="true"></div>
+    <div class="shell">
+      <div class="nextmatch reveal" style="grid-template-columns:1fr;border:0;background:transparent;padding:0">
+        <div style="display:grid;gap:1.25rem;align-items:center;grid-template-columns:1fr">
+          <div>
+            <span class="nextmatch-tag">Next match &middot; DCL T10 2026</span>
+            <p class="nextmatch-teams" style="font-size:clamp(1.5rem,1rem+1.8vw,2.2rem)">
+              Wollert Rhinos <span class="vs" style="display:inline;font-size:0.6em;margin:0 0.35rem">v</span> Al Fatah CC
+            </p>
+            <ul class="nextmatch-meta" style="margin-top:1.1rem;grid-template-columns:1fr">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                <span><strong>Saturday 22 August 2026</strong>, 1:00 pm &middot; Thomastown East Reserve, Lower Oval</span>
+              </li>
+            </ul>
+            <p style="margin-top:1.5rem">
+              <a class="btn btn-sm" href="fixtures.html">Match details &amp; squad</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===================== INTRO ===================== -->
   <section class="section section-paper">
@@ -194,7 +234,7 @@
         </div>
 
         <figure class="split-figure reveal" data-delay="1">
-          <img src="assets/img/jersey-presentation.jpg" alt="Faisal Hayat presenting an Al Fatah Cricket Club jersey to a junior player" width="1200" height="1600" loading="lazy">
+          <img src="assets/img/jersey-presentation-thumb.jpg" alt="Faisal Hayat presenting an Al Fatah Cricket Club jersey to a junior player" width="1200" height="1600" loading="lazy">
           <figcaption>Handing over the number 1 jersey to the next generation</figcaption>
         </figure>
       </div>
@@ -210,12 +250,12 @@
           <div class="stat-label">Year founded</div>
         </div>
         <div class="stat">
-          <div class="stat-value" data-count="1" data-suffix="">1</div>
-          <div class="stat-label">League title</div>
+          <div class="stat-value" data-count="24" data-suffix="">24</div>
+          <div class="stat-label">Squad players</div>
         </div>
         <div class="stat">
-          <div class="stat-value" data-count="12" data-suffix="+">12+</div>
-          <div class="stat-label">Squad members</div>
+          <div class="stat-value" data-count="3" data-suffix="">3</div>
+          <div class="stat-label">Leagues in 2026</div>
         </div>
         <div class="stat">
           <div class="stat-value" data-count="3" data-suffix="">3</div>
@@ -268,13 +308,13 @@
 
         <article class="person reveal" data-delay="2">
           <div class="person-photo">
-            <span class="person-monogram" aria-hidden="true">JM</span>
+            <img src="assets/img/player-khawaja.jpg" alt="Khawaja Jamal Chak, core member of Al Fatah Cricket Club" width="560" height="747" loading="lazy">
           </div>
           <div class="person-body">
             <span class="person-role alt">Core Member</span>
-            <h3 class="person-name">Jamal</h3>
-            <p class="person-meta">One of the original group behind Al Fatah. Keeps the club running week to week, from grounds to gear to game day.</p>
-            <div class="person-tags"><span class="tag">Founding group</span><span class="tag">Operations</span></div>
+            <h3 class="person-name">Khawaja Jamal Chak</h3>
+            <p class="person-meta">One of the original group behind Al Fatah, and named in both competition squads. Keeps the club running week to week, from grounds to gear to game day.</p>
+            <div class="person-tags"><span class="tag">Founding group</span><span class="tag">Both squads</span></div>
           </div>
         </article>
       </div>
@@ -287,32 +327,38 @@
       <div class="section-head split">
         <div class="reveal">
           <p class="eyebrow">The season ahead</p>
-          <h2 class="section-title">Next up for the <span class="accent">green and gold</span></h2>
+          <h2 class="section-title">Three leagues for the <span class="accent">green and gold</span></h2>
         </div>
         <div class="head-aside reveal" data-delay="1">
-          <a class="link-arrow" href="fixtures.html">Full fixture list
+          <a class="link-arrow" href="fixtures.html">Full match centre
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="grid grid-2">
+      <div class="grid grid-3">
         <div class="card reveal">
           <span class="value-num">01</span>
-          <h3>Darebin Chargers T10 League 2026</h3>
+          <h3>Darebin Chargers League</h3>
           <p>
-            Al Fatah CC will take the field in the Darebin Chargers T10 League across
-            August and September 2026. Short format, big crowds, and the sharpest cricket
-            in the north. Squad selection opens ahead of the season.
+            DCL T10, Group C with Darebin Lions, Tarneit Central, Melbourne Warriors and
+            Wollert Rhinos. Ten overs a side and already underway.
           </p>
         </div>
         <div class="card reveal" data-delay="1">
           <span class="value-num">02</span>
-          <h3>Trugannina Premier League defence</h3>
+          <h3>NWS League 2026/27</h3>
           <p>
-            We hold the Trugannina Premier League title and we intend to keep it. Preseason
-            training, fitness work and trial matches run in the lead up, and every place in
-            the eleven is earned.
+            Twelve clubs, two pools. Al Fatah is in Pool B, five pool games then quarter
+            finals, semis and the grand final. Starts 30 August 2026.
+          </p>
+        </div>
+        <div class="card reveal" data-delay="2">
+          <span class="value-num">03</span>
+          <h3>Truganina Premier League</h3>
+          <p>
+            The 7th TPL, T20 Friendship Cup. Fourteen teams. We go in defending the trophy
+            we won in 2025. Starts 4 October 2026.
           </p>
         </div>
       </div>
@@ -375,18 +421,18 @@
             <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
           </span>
           <span>
-            <span class="honour-title">Trugannina Premier League Champions</span>
-            <span class="honour-sub">Full squad title, medals awarded to every player</span>
+            <span class="honour-title">TPL Friendship Cup, Winners</span>
+            <span class="honour-sub">Truganina Premier League, medals awarded to the full squad</span>
           </span>
-          <span class="honour-year">Champions</span>
+          <span class="honour-year">2025</span>
         </li>
         <li class="honour">
           <span class="honour-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           </span>
           <span>
-            <span class="honour-title">Darebin Chargers T10 League</span>
-            <span class="honour-sub">Confirmed entry, August to September 2026</span>
+            <span class="honour-title">Three leagues entered</span>
+            <span class="honour-sub">Darebin Chargers T10, NWS League 2026/27 and the Truganina Premier League</span>
           </span>
           <span class="honour-year">2026</span>
         </li>
@@ -421,16 +467,16 @@
 
       <div class="gallery-grid reveal">
         <a class="gallery-item wide" href="gallery.html" aria-label="Championship team photo">
-          <img src="assets/img/team-champions-sm.jpg" alt="Al Fatah Cricket Club squad celebrating with the league trophy" width="1000" height="750" loading="lazy">
-          <span class="gallery-caption">Champions, full squad</span>
+          <img src="assets/img/team-champions-thumb.jpg" alt="Al Fatah Cricket Club squad celebrating with the TPL Friendship Cup" width="900" height="675" loading="lazy">
+          <span class="gallery-caption">Friendship Cup winners</span>
         </a>
-        <a class="gallery-item tall" href="gallery.html" aria-label="Jersey presentation">
-          <img src="assets/img/jersey-presentation.jpg" alt="Jersey presentation to a junior player" width="1200" height="1600" loading="lazy">
-          <span class="gallery-caption">Jersey presentation</span>
+        <a class="gallery-item tall" href="gallery.html" aria-label="Eid Mubarak club poster">
+          <img src="assets/img/eid-mubarak-thumb.jpg" alt="Al Fatah Cricket Club players around the trophy on an Eid greeting poster" width="700" height="990" loading="lazy">
+          <span class="gallery-caption">Eid Mubarak</span>
         </a>
-        <a class="gallery-item tall" href="gallery.html" aria-label="Faisal Hayat club poster">
-          <img src="assets/img/poster-faisal.jpg" alt="Club poster featuring Faisal Hayat" width="900" height="1200" loading="lazy">
-          <span class="gallery-caption">Captain, Faisal Hayat</span>
+        <a class="gallery-item tall" href="fixtures.html" aria-label="Match day squad">
+          <img src="assets/img/matchday-wollert-thumb.jpg" alt="Match day squad poster for the fixture against Wollert Rhinos" width="700" height="1050" loading="lazy">
+          <span class="gallery-caption">Match day squad</span>
         </a>
       </div>
     </div>
@@ -511,7 +557,7 @@
       </div>
 
       <div class="footer-col">
-        <h4>Club</h4>
+        <h3>Club</h3>
         <ul>
           <li><a href="about.html">About us</a></li>
           <li><a href="squad.html">Squad</a></li>
@@ -521,7 +567,7 @@
       </div>
 
       <div class="footer-col">
-        <h4>Get involved</h4>
+        <h3>Get involved</h3>
         <ul>
           <li><a href="contact.html#join">Play for us</a></li>
           <li><a href="sponsors.html">Become a sponsor</a></li>
@@ -530,7 +576,7 @@
       </div>
 
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="tel:+61450088786">0450 088 786 &middot; Faisal</a></li>
         <li><a href="https://wa.me/61403053888" rel="noopener">WhatsApp the club</a></li>

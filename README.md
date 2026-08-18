@@ -10,7 +10,7 @@ Victoria, Australia. Established 2021.
 ## About the club
 
 Al Fatah Cricket Club was founded in 2021 by a group of players in Melbourne who
-wanted a side that selected on merit and trained properly. The club are Trugannina
+wanted a side that selected on merit and trained properly. The club are Truganina
 Premier League champions and are competing in the Darebin Chargers T10 League 2026
 across August and September 2026.
 
