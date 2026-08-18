@@ -231,6 +231,10 @@
      opens the visitor's email client with the answers already filled in,
      which works on any host with zero setup.
 
+     Each form carries data-whatsapp with a number in international format
+     (no plus sign, no spaces). Submitting opens WhatsApp with every answer
+     already written out, so the club receives it as a normal message.
+
      To switch to a hosted form service instead, put the endpoint URL in
      the form's data-endpoint attribute and this script will POST to it.
      ------------------------------------------------------------------ */
@@ -272,7 +276,6 @@
           return;
         }
 
-        var to = form.getAttribute("data-mailto") || "info@alfatahcc.com.au";
         var subject = form.getAttribute("data-subject") || "Website enquiry";
         var lines = [];
         data.forEach(function (value, key) {
@@ -281,12 +284,26 @@
           lines.push(label + ": " + value);
         });
 
-        var href =
+        // Preferred route: open WhatsApp with the answers already written out.
+        // Works on phones and on desktop through WhatsApp Web.
+        var wa = form.getAttribute("data-whatsapp");
+        if (wa) {
+          var text = subject + "\n\n" + lines.join("\n");
+          window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+          say("WhatsApp is opening with your details filled in. Press send to finish.", true);
+          return;
+        }
+
+        // Fallback for anyone without WhatsApp: hand it to their email app.
+        var to = form.getAttribute("data-mailto");
+        if (!to) {
+          say("No contact route is configured on this form yet.", false);
+          return;
+        }
+        window.location.href =
           "mailto:" + to +
           "?subject=" + encodeURIComponent(subject) +
           "&body=" + encodeURIComponent(lines.join("\n"));
-
-        window.location.href = href;
         say("Your email app should now open with the details filled in. Press send to finish.", true);
       });
     });
