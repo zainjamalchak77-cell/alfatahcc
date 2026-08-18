@@ -3,7 +3,7 @@
 Official website of **Al Fatah Cricket Club**, a cricket club based in Melbourne,
 Victoria, Australia. Established 2021.
 
-**Live site: https://zainjamalchak77-cell.github.io/alfatahcc/**
+**Live site: https://alfatahcc.com/**
 
 > One Club. One Family. One Goal.
 
@@ -19,7 +19,7 @@ across August and September 2026.
 - **Core Member:** Jamal
 
 New players and supporters are welcome. See the
-[contact page](https://zainjamalchak77-cell.github.io/alfatahcc/contact.html).
+[contact page](https://alfatahcc.com/contact.html).
 
 ## Club partners
 
