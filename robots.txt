@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zainjamalchak77-cell.github.io/alfatahcc/sitemap.xml

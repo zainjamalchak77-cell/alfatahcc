@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" role="img" aria-label="Al Fatah Cricket Club crest">
+  <title>Al Fatah Cricket Club</title>
+
+  <defs>
+    <linearGradient id="afccGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD34E"/>
+      <stop offset="55%" stop-color="#F4B923"/>
+      <stop offset="100%" stop-color="#D99A12"/>
+    </linearGradient>
+    <linearGradient id="afccField" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#79C95C"/>
+      <stop offset="100%" stop-color="#4EA83D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- shield: gold rim -->
+  <path fill="url(#afccGold)"
+        d="M14 26 Q14 16 24 16 L176 16 Q186 16 186 26 L186 132 C186 186 146 218 100 234 C54 218 14 186 14 132 Z"/>
+  <!-- shield: dark green band -->
+  <path fill="#0C4A24"
+        d="M21 30 Q21 23 28 23 L172 23 Q179 23 179 30 L179 131 C179 181 143 210 100 225 C57 210 21 181 21 131 Z"/>
+  <!-- shield: light green field -->
+  <path fill="url(#afccField)"
+        d="M27 34 Q27 29 32 29 L168 29 Q173 29 173 34 L173 130 C173 176 140 203 100 217 C60 203 27 176 27 130 Z"/>
+
+  <!-- crossed bats (behind the stumps) -->
+  <g fill="#0C4A24">
+    <g transform="translate(100 68) rotate(-34)">
+      <rect x="-2.7" y="-34" width="5.4" height="29" rx="2.7"/>
+      <path d="M-2.9 -7 L2.9 -7 L7.8 3 L7.8 40 Q7.8 44 3.8 44 L-3.8 44 Q-7.8 44 -7.8 40 L-7.8 3 Z"/>
+    </g>
+    <g transform="translate(100 68) rotate(34)">
+      <rect x="-2.7" y="-34" width="5.4" height="29" rx="2.7"/>
+      <path d="M-2.9 -7 L2.9 -7 L7.8 3 L7.8 40 Q7.8 44 3.8 44 L-3.8 44 Q-7.8 44 -7.8 40 L-7.8 3 Z"/>
+    </g>
+  </g>
+
+  <!-- stumps and bails (in front) -->
+  <g fill="#0C4A24">
+    <rect x="88.6" y="37.5" width="10" height="3.4" rx="1.7"/>
+    <rect x="101.4" y="37.5" width="10" height="3.4" rx="1.7"/>
+    <rect x="90.25" y="42" width="4.5" height="46" rx="2.25"/>
+    <rect x="97.75" y="42" width="4.5" height="46" rx="2.25"/>
+    <rect x="105.25" y="42" width="4.5" height="46" rx="2.25"/>
+  </g>
+
+  <!-- banner ribbon -->
+  <path fill="#C98A0C" d="M22 120 L4 113 L9 135 L4 157 L22 150 Z"/>
+  <path fill="#C98A0C" d="M178 120 L196 113 L191 135 L196 157 L178 150 Z"/>
+  <path fill="url(#afccGold)" d="M20 118 L180 118 L180 151 L20 151 Z"/>
+  <text x="100" y="143" text-anchor="middle" fill="#0C4A24"
+        font-family="'Arial Black','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="24" letter-spacing="0.5">AL FATAH</text>
+
+  <!-- club wordmark -->
+  <text x="100" y="171" text-anchor="middle" fill="#0C4A24"
+        font-family="'Arial Black','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="16" letter-spacing="1.2">CRICKET</text>
+  <text x="100" y="188" text-anchor="middle" fill="#0C4A24"
+        font-family="'Arial Black','Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-weight="900" font-size="16" letter-spacing="1.2">CLUB</text>
+
+  <!-- red rule and star -->
+  <rect x="70" y="194" width="60" height="3.2" rx="1.6" fill="#DF3B2C"/>
+  <path fill="#DF3B2C" d="M100 198.5 L102.1 204.1 L108.1 204.4 L103.4 208.1 L105 213.9 L100 210.6 L95 213.9 L96.6 208.1 L91.9 204.4 L97.9 204.1 Z"/>
+</svg>

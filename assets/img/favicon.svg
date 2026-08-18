@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Al Fatah Cricket Club">
+  <title>AFCC</title>
+  <defs>
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD34E"/><stop offset="100%" stop-color="#DFA315"/>
+    </linearGradient>
+    <linearGradient id="ff" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#79C95C"/><stop offset="100%" stop-color="#4EA83D"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#fg)" d="M8 24 Q8 12 20 12 L180 12 Q192 12 192 24 L192 108 C192 152 148 182 100 196 C52 182 8 152 8 108 Z"/>
+  <path fill="#0C4A24" d="M17 29 Q17 21 25 21 L175 21 Q183 21 183 29 L183 107 C183 146 143 172 100 185 C57 172 17 146 17 107 Z"/>
+  <path fill="url(#ff)" d="M25 35 Q25 29 31 29 L169 29 Q175 29 175 35 L175 106 C175 141 138 164 100 176 C62 164 25 141 25 106 Z"/>
+  <g fill="#0C4A24">
+    <g transform="translate(100 92) rotate(-34)">
+      <rect x="-4" y="-50" width="8" height="42" rx="4"/>
+      <path d="M-4.3 -10 L4.3 -10 L11.5 4 L11.5 57 Q11.5 63 5.5 63 L-5.5 63 Q-11.5 63 -11.5 57 L-11.5 4 Z"/>
+    </g>
+    <g transform="translate(100 92) rotate(34)">
+      <rect x="-4" y="-50" width="8" height="42" rx="4"/>
+      <path d="M-4.3 -10 L4.3 -10 L11.5 4 L11.5 57 Q11.5 63 5.5 63 L-5.5 63 Q-11.5 63 -11.5 57 L-11.5 4 Z"/>
+    </g>
+    <rect x="82" y="42" width="15" height="5" rx="2.5"/>
+    <rect x="103" y="42" width="15" height="5" rx="2.5"/>
+    <rect x="83.5" y="49" width="6.6" height="68" rx="3.3"/>
+    <rect x="96.7" y="49" width="6.6" height="68" rx="3.3"/>
+    <rect x="109.9" y="49" width="6.6" height="68" rx="3.3"/>
+  </g>
+  <path fill="#DF3B2C" d="M100 128 L103.2 136.5 L112.3 136.9 L105.2 142.5 L107.6 151.3 L100 146.3 L92.4 151.3 L94.8 142.5 L87.7 136.9 L96.8 136.5 Z"/>
+</svg>
