@@ -1336,7 +1336,7 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
   color: var(--green-900);
 }
 .info-icon svg { width: 20px; height: 20px; }
-.info-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(246,244,237,0.6); }
+.info-label { display: block; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(246,244,237,0.6); margin-bottom: 0.2rem; }
 .info-value { font-weight: 600; }
 .info-value a:hover { color: var(--gold); }
 
