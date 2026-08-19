@@ -932,6 +932,100 @@ body.nav-open { overflow: hidden; }
   color: rgba(246, 244, 237, 0.85);
 }
 
+/* Mentor feature and career stat tiles
+   -------------------------------------------------------------------------- */
+.mentor {
+  display: grid;
+  gap: clamp(1.75rem, 1rem + 3vw, 3rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 900px) { .mentor { grid-template-columns: 0.8fr 1fr; } }
+
+.mentor-figure {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--line-dark);
+  margin: 0;
+}
+.mentor-figure img { width: 100%; display: block; }
+
+.mentor-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-top: 0.5rem;
+}
+
+.playerstats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line-dark);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 1.75rem;
+}
+@media (min-width: 520px) { .playerstats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.playerstat {
+  background: var(--green-900);
+  padding: 1.1rem 0.75rem;
+  text-align: center;
+}
+.playerstat b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
+  line-height: 1;
+  color: var(--gold);
+}
+.playerstat span {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 237, 0.7);
+}
+.section-paper .playerstat { background: var(--cream); }
+.section-paper .playerstat b { color: var(--green-600); }
+.section-paper .playerstat span { color: var(--muted); }
+
+.milestone {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(244, 185, 35, 0.4);
+  background: rgba(244, 185, 35, 0.1);
+}
+.milestone-num {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--gold);
+}
+.milestone p { margin: 0; font-size: 0.92rem; color: rgba(246, 244, 237, 0.85); }
+.milestone strong { color: var(--cream); }
+
+.stat-source {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: rgba(246, 244, 237, 0.55);
+}
+.stat-source a { color: var(--gold); }
+
 /* Squad roster rows */
 .roster {
   border: 1px solid var(--line);
