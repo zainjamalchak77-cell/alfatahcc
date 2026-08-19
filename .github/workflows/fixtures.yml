@@ -1,0 +1,52 @@
+name: Update fixtures
+
+# Rebuilds the fixtures page from the club's Google Sheet.
+#
+# Set the repository secret FIXTURES_CSV_URL to the sheet's "Publish to web"
+# CSV link. Without it the build falls back to data/fixtures.csv, so the site
+# keeps working either way.
+
+on:
+  schedule:
+    - cron: "17 * * * *"        # hourly, at 17 past
+  workflow_dispatch:            # lets anyone trigger it by hand from the Actions tab
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build-fixtures.mjs"
+      - "data/fixtures.csv"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fixtures
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build fixtures from the sheet
+        env:
+          FIXTURES_CSV_URL: ${{ secrets.FIXTURES_CSV_URL }}
+        run: node scripts/build-fixtures.mjs
+
+      - name: Publish if anything changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No fixture changes. Nothing to publish."
+            exit 0
+          fi
+          git config user.name  "Al Fatah CC fixtures bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update fixtures from the club sheet [skip ci]"
+          git push
+          echo "Published."
