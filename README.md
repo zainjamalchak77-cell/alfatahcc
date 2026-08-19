@@ -37,7 +37,7 @@ external requests and renders correctly offline.
 | `assets/css/styles.css` | All styling |
 | `assets/js/main.js` | All behaviour |
 | `assets/fonts/` | Self hosted Anton and Inter |
-| `assets/img/` | Crest, photos and the social share image |
+| `assets/img/logo.png` | Club crest, transparent background |
 
 ### Publishing
 

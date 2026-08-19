@@ -420,7 +420,8 @@ p { text-wrap: pretty; }
   margin-right: auto;
   color: var(--cream);
 }
-.brand img { width: 42px; height: auto; flex: none; }
+.brand img { width: 58px; height: auto; flex: none; }
+.site-header.is-stuck .brand img { width: 50px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name {
   font-family: var(--font-display);
@@ -1539,7 +1540,7 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
 @media (min-width: 1020px) { .footer-grid { grid-template-columns: 1.8fr 1fr 1fr 1.2fr; } }
 
 .footer-brand { display: flex; align-items: center; gap: 0.875rem; margin-bottom: 1.1rem; }
-.footer-brand img { width: 54px; }
+.footer-brand img { width: 72px; }
 .footer-brand .brand-name { color: var(--cream); font-size: 1.3rem; }
 .footer-col h3 {
   font-family: var(--font-body);

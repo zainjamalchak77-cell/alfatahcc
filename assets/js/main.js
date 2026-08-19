@@ -186,7 +186,7 @@
       var trigger = triggers[index];
       var full = trigger.getAttribute("data-full") || trigger.querySelector("img").src;
       var caption = trigger.getAttribute("data-caption") || trigger.querySelector("img").alt || "";
-      imgEl.src = full;
+      imgEl.setAttribute("src", full);
       imgEl.alt = caption;
       capEl.textContent = caption;
     }
