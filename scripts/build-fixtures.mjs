@@ -7,6 +7,8 @@
  * committed data/fixtures.csv when no sheet URL is set or the sheet cannot be
  * reached, so the site never ends up with an empty fixtures page.
  *
+ * Optional per row: live_url, a CricHeroes league or scorecard link.
+ *
  * Usage:
  *   node scripts/build-fixtures.mjs            # uses FIXTURES_CSV_URL, else the local file
  *   FIXTURES_CSV_URL=... node scripts/build-fixtures.mjs
@@ -148,8 +150,9 @@ ${meta.map(([svg, txt]) => `            <li>\n              ${svg}\n            
           </ul>
 ${squadHtml}
 
-          <p style="margin-top:1.75rem">
-            <a class="btn btn-sm" href="contact.html">Ask about this match</a>
+          <p style="margin-top:1.75rem;display:flex;flex-wrap:wrap;gap:0.6rem">
+            ${f.live_url ? `<a class="btn btn-sm" href="${esc(f.live_url)}" rel="noopener" target="_blank">Live scores on CricHeroes</a>` : ""}
+            <a class="btn btn-outline btn-sm" href="contact.html">Ask about this match</a>
           </p>
         </div>`;
 }
@@ -177,6 +180,7 @@ function renderFixtureCard(f) {
             <p class="fixture-comp">${esc(f.competition || "")}</p>
             <h3 class="fixture-teams">${t.left} v ${t.right}</h3>
             ${venueLine ? `<p class="fixture-venue">\n              ${SVG.pinSm}\n              ${venueLine}\n            </p>` : ""}
+            ${f.live_url ? `<p class="fixture-venue"><a href="${esc(f.live_url)}" rel="noopener" target="_blank" style="color:var(--gold-dark);font-weight:700">Scorecard on CricHeroes</a></p>` : ""}
           </div>
           <div class="fixture-result">
 ${right}

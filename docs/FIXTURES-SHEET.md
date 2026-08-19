@@ -12,10 +12,14 @@ Make a new Google Sheet called **Al Fatah CC Fixtures**. Put these headings in
 row 1, spelled exactly like this, all lower case:
 
 ```
-date | time | competition | opponent | home_away | venue | format | status | result | our_score | their_score | squad | notes
+date | time | competition | opponent | home_away | venue | format | status | result | our_score | their_score | squad | notes | live_url
 ```
 
 Only **date** and **opponent** are required. Leave anything you do not know blank.
+
+Tip: `live_url` is worth filling in every time. Paste the CricHeroes link for
+that league or that specific scorecard and the site puts a live scores button on
+the match, so supporters can follow ball by ball while it is being played.
 
 ### What each column means
 
@@ -34,6 +38,7 @@ Only **date** and **opponent** are required. Leave anything you do not know blan
 | `their_score` | Their score | `138/7` |
 | `squad` | Names separated by commas, put `(C)` after the captain | `Faisal Hayat (C), Tahir Saeed, Rao Haider` |
 | `notes` | Anything else, not shown on the site yet | |
+| `live_url` | CricHeroes link for that match or league. Adds a "Live scores on CricHeroes" button | `https://cricheroes.com/cricket-league/2206/...` |
 
 **The date decides everything.** The soonest upcoming match automatically becomes
 the big "Next match" card on the fixtures page and the band on the home page. You
