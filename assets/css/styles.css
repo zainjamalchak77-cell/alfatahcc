@@ -1481,8 +1481,11 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
 /* --------------------------------------------------------------------------
    14. Sponsors
    -------------------------------------------------------------------------- */
-.sponsor-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(2, 1fr); }
-@media (min-width: 780px) { .sponsor-grid { grid-template-columns: repeat(3, 1fr); } }
+.sponsor-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+.sponsor-grid > * { min-width: 0; }
+/* Two cards side by side only once there is room for the partner label */
+@media (min-width: 430px) { .sponsor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 780px) { .sponsor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 .sponsor {
   display: grid;
@@ -1498,7 +1501,25 @@ table.ladder { width: 100%; border-collapse: collapse; min-width: 620px; }
   transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .sponsor:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: var(--shadow); }
-.sponsor-name { font-family: var(--font-display); font-size: 1.5rem; color: var(--green-700); text-transform: uppercase; }
+
+/* Sponsors that have given us a link become clickable cards */
+a.sponsor { cursor: pointer; }
+a.sponsor:hover .sponsor-name { color: var(--green-500); }
+.sponsor-link {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.sponsor-link svg { width: 13px; height: 13px; }
+.sponsor-name { font-family: var(--font-display); font-size: clamp(1.15rem, 0.9rem + 1vw, 1.5rem); color: var(--green-700); text-transform: uppercase; overflow-wrap: anywhere; }
 .sponsor-tier {
   font-size: 0.65rem;
   font-weight: 800;
