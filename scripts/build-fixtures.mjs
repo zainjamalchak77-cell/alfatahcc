@@ -286,6 +286,24 @@ async function main() {
   const next = upcoming[0] || null;
   if (next) next._isNext = true;
 
+  // The file is edited by hand, so say plainly when a row looks wrong rather
+  // than letting it fall through a default and quietly vanish from the page.
+  for (const f of fixtures) {
+    const st = String(f.status || "").toLowerCase();
+    const who = `${f.opponent || "unknown opponent"} on ${f.date}`;
+
+    if (st && !st.startsWith("upcoming") && !st.startsWith("res")) {
+      console.warn(`  WARNING: ${who} has status "${f.status}". Only "upcoming" and "result" are understood, so this row is being treated as upcoming.`);
+    }
+    if (!isResult(f) && f._date < today) {
+      console.warn(`  WARNING: ${who} is still marked upcoming but the date has passed, so it shows nowhere on the site. Set status to "result".`);
+    }
+    const ha = String(f.home_away || "").toLowerCase();
+    if (ha && !["h", "a", "n"].includes(ha[0])) {
+      console.warn(`  WARNING: ${who} has home_away "${f.home_away}". Expected home, away or neutral. Treating it as away.`);
+    }
+  }
+
   console.log(`  ${fixtures.length} fixture(s): ${upcoming.length} upcoming, ${results.length} result(s)`);
   if (next) console.log(`  next match: ${teams(next).left} v ${teams(next).right}, ${fmtLong(next._date)}`);
 

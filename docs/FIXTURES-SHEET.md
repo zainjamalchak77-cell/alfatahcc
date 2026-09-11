@@ -8,8 +8,14 @@ to touch any code.
 
 ## 1. Create the sheet
 
-Make a new Google Sheet called **Al Fatah CC Fixtures**. Put these headings in
-row 1, spelled exactly like this, all lower case:
+The quickest way is to import the file the site already runs on. In a blank
+Google Sheet choose **File -> Import -> Upload**, pick `data/fixtures.csv` from
+this repository, choose **Replace spreadsheet** and comma as the separator. That
+gives you the correct headings and the current fixtures in one step. Name the
+sheet **Al Fatah CC Fixtures**.
+
+To build it by hand instead, put these headings in row 1, spelled exactly like
+this, all lower case:
 
 ```
 date | time | competition | opponent | home_away | venue | format | status | result | our_score | their_score | squad | notes | live_url | poster
@@ -73,6 +79,46 @@ any other file public.
 5. **Add secret**
 
 Done. From then on it runs by itself.
+
+---
+
+## Letting someone else update the fixtures
+
+Anyone with edit access to the sheet can update the website. They do not need a
+GitHub account and they never touch any code.
+
+1. In the sheet click **Share**
+2. Add their email, set them to **Editor**
+3. Send them the link, plus the column guide above
+
+**What they type goes live within the hour, with nobody reviewing it first.** So
+give edit access only to people who should be able to change the public site,
+and keep everyone else on Viewer.
+
+### Guard the sheet against typos
+
+A malformed row does not show an error on the website, it just quietly fails to
+appear. Two minutes of setup prevents most of it. Select the column, then
+**Data -> Data validation**, and add a dropdown:
+
+| Column | Allowed values |
+| --- | --- |
+| `status` | `upcoming`, `result` |
+| `home_away` | `home`, `away`, `neutral` |
+
+For `date`, set the validation to **Date** so a mistyped day is rejected as it
+is entered. The date format must stay `YYYY-MM-DD`.
+
+The build also writes warnings into the Actions log when it sees a status it
+does not recognise, or a match still marked upcoming after its date has passed.
+That is the log to check when a fixture does not appear.
+
+### Posters are not in the sheet
+
+The `poster` column holds a filename, not an image. The file itself has to be
+added to the repository, so whoever maintains the site adds new posters. Anyone
+editing the sheet can leave `poster` blank and the fixture still builds with the
+club default.
 
 ---
 
