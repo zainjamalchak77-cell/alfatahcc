@@ -71,6 +71,7 @@ const esc = (s = "") =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTHS_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
 function parseDate(s) {
@@ -82,6 +83,7 @@ function parseDate(s) {
 const fmtDay   = (d) => String(d.getUTCDate()).padStart(2, "0");
 const fmtMon   = (d) => `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 const fmtLong  = (d) => `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+const fmtLongFull = (d) => `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS_FULL[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 
 /** "home", "away", or "neutral" for a ground belonging to neither side. */
 const isHome    = (f) => String(f.home_away).toLowerCase().startsWith("h");
@@ -169,6 +171,26 @@ ${squadHtml}
             <a class="btn btn-outline btn-sm" href="contact.html">Ask about this match</a>
           </p>
         </div>`;
+}
+
+/** The big heading above the next match card. */
+function renderNextTitle(f) {
+  if (!f) {
+    return `          <h2 class="section-title" style="max-width:none">No fixture <span class="accent" style="white-space:nowrap">scheduled</span></h2>`;
+  }
+  const t = teams(f);
+  return `          <h2 class="section-title" style="max-width:none">${t.left} <span class="accent" style="white-space:nowrap">v ${t.right}</span></h2>`;
+}
+
+/** Search and social preview text, which also names the next opponent. */
+function renderMetaDesc(f) {
+  const leagues = "Competing in the Darebin Chargers League T10, NWS League 2026/27 and the Truganina Premier League.";
+  if (!f) {
+    return `<meta name="description" content="Al Fatah Cricket Club fixtures and competitions. ${leagues}">`;
+  }
+  const venue = String(f.venue || "").split(",")[0].trim();
+  const where = venue ? ` at ${esc(venue)}` : "";
+  return `<meta name="description" content="Al Fatah Cricket Club fixtures and competitions. Next match versus ${esc(f.opponent || "")}, ${esc(fmtLongFull(f._date))}${where}. ${leagues}">`;
 }
 
 function renderFixtureCard(f) {
@@ -310,6 +332,8 @@ async function main() {
   // fixtures.html
   const fp = join(ROOT, "fixtures.html");
   let fx = readFileSync(fp, "utf8");
+  fx = replaceRegion(fx, "NEXTDESC", renderMetaDesc(next), "fixtures.html");
+  fx = replaceRegion(fx, "NEXTTITLE", renderNextTitle(next), "fixtures.html");
   fx = replaceRegion(fx, "NEXTMATCH", renderNextMatch(next), "fixtures.html");
   fx = replaceRegion(fx, "UPCOMING", renderList(upcoming.slice(1), "Nothing else on the schedule yet. The leagues release dates round by round."), "fixtures.html");
   fx = replaceRegion(fx, "RESULTS", renderList(results, "No results published yet this season."), "fixtures.html");
