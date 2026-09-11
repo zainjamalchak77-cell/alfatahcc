@@ -345,6 +345,29 @@ async function main() {
   ix = replaceRegion(ix, "HOMENEXT", renderHomeBand(next), "index.html");
   writeFileSync(ip, ix);
 
+  // The two pages this script rewrites are the ones that change most often, so
+  // keep their sitemap dates honest. A stale lastmod tells search engines not
+  // to bother recrawling, which is how fixture updates go unnoticed.
+  const sp = join(ROOT, "sitemap.xml");
+  if (existsSync(sp)) {
+    const stamp = new Date().toISOString().slice(0, 10);
+    const tracked = ["https://alfatahcc.com/", "https://alfatahcc.com/fixtures.html"];
+    let sm = readFileSync(sp, "utf8");
+    let touched = 0;
+
+    for (const loc of tracked) {
+      const re = new RegExp(`(<loc>${loc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</loc>\\s*<lastmod>)([^<]*)(</lastmod>)`);
+      sm = sm.replace(re, (m, a, was, b) => {
+        if (was !== stamp) touched++;
+        return a + stamp + b;
+      });
+    }
+    if (touched) {
+      writeFileSync(sp, sm);
+      console.log(`  sitemap: ${touched} lastmod date(s) set to ${stamp}`);
+    }
+  }
+
   console.log("  wrote fixtures.html and index.html");
 }
 

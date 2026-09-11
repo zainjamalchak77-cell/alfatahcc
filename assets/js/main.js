@@ -312,6 +312,24 @@
   /* ------------------------------------------------------------------
      Footer year
      ------------------------------------------------------------------ */
+  /* League status. A chip or line carrying data-starts flips to its
+     data-started-text once that date has passed, so a competition never
+     still reads "starts on" while its fixtures are being played. */
+  function initLeagueStatus() {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-starts]"), function (el) {
+      var p = el.getAttribute("data-starts").split("-");
+      if (p.length !== 3) return;
+      var start = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+      if (isNaN(start)) return;
+      if (start <= today) {
+        el.textContent = el.getAttribute("data-started-text") || "Underway";
+      }
+    });
+  }
+
   function initYear() {
     document.querySelectorAll("[data-year]").forEach(function (el) {
       el.textContent = String(new Date().getFullYear());
@@ -330,6 +348,7 @@
     initLightbox();
     initForms();
     initYear();
+    initLeagueStatus();
   }
 
   // Tells the inline head script that this file loaded. If it never runs, that
