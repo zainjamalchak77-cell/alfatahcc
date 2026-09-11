@@ -12,7 +12,7 @@ Make a new Google Sheet called **Al Fatah CC Fixtures**. Put these headings in
 row 1, spelled exactly like this, all lower case:
 
 ```
-date | time | competition | opponent | home_away | venue | format | status | result | our_score | their_score | squad | notes | live_url
+date | time | competition | opponent | home_away | venue | format | status | result | our_score | their_score | squad | notes | live_url | poster
 ```
 
 Only **date** and **opponent** are required. Leave anything you do not know blank.
@@ -29,16 +29,17 @@ the match, so supporters can follow ball by ball while it is being played.
 | `time` | Start time, any readable format | `1:00 pm` |
 | `competition` | Which league | `Darebin Chargers League · T10 2026` |
 | `opponent` | The other team | `Wollert Rhinos` |
-| `home_away` | `home` or `away` | `away` |
+| `home_away` | `home`, `away`, or `neutral` for a ground belonging to neither club | `neutral` |
 | `venue` | Ground, and which oval | `Thomastown East Reserve, Lower Oval` |
 | `format` | Overs | `10 over match` |
-| `status` | `upcoming` or `result` | `upcoming` |
+| `status` | `upcoming` or `result`. Nothing else counts as played | `upcoming` |
 | `result` | Only once played | `Won by 6 wickets` |
 | `our_score` | Al Fatah's score | `142/4` |
 | `their_score` | Their score | `138/7` |
 | `squad` | Names separated by commas, put `(C)` after the captain | `Faisal Hayat (C), Tahir Saeed, Rao Haider` |
 | `notes` | Anything else, not shown on the site yet | |
 | `live_url` | CricHeroes link for that match or league. Adds a "Live scores on CricHeroes" button | `https://cricheroes.com/cricket-league/2206/...` |
+| `poster` | Filename of the match day poster in `assets/img/`. Leave blank to use the club default | `matchday-amuc-thumb.jpg` |
 
 **The date decides everything.** The soonest upcoming match automatically becomes
 the big "Next match" card on the fixtures page and the band on the home page. You
@@ -96,6 +97,22 @@ Actions log so it is visible.
 
 That also means the site works with no sheet at all. Edit `data/fixtures.csv`
 directly and the same build runs.
+
+---
+
+## Adding a match day poster
+
+The poster is the tall graphic beside the "Next match" card. Posters live in the
+repository, not in the sheet, because a sheet cannot hold an image file.
+
+1. Save the poster into `assets/img/` twice, at these exact sizes:
+   - `matchday-<opponent>.jpg` at 1024 x 1536, the full size for the gallery
+   - `matchday-<opponent>-thumb.jpg` at 600 x 900, the one the page displays
+2. Put the thumb filename in the `poster` column for that fixture.
+
+If the `poster` cell is blank the site falls back to the club default poster, so
+a fixture without one still builds. A sheet with no `poster` column at all also
+still works, every fixture just uses the default.
 
 ---
 

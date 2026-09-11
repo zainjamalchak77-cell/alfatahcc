@@ -83,13 +83,20 @@ const fmtDay   = (d) => String(d.getUTCDate()).padStart(2, "0");
 const fmtMon   = (d) => `${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 const fmtLong  = (d) => `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 
-/** Home fixtures read "Al Fatah CC v X", away fixtures read "X v Al Fatah CC". */
+/** "home", "away", or "neutral" for a ground belonging to neither side. */
+const isHome    = (f) => String(f.home_away).toLowerCase().startsWith("h");
+const isNeutral = (f) => String(f.home_away).toLowerCase().startsWith("n");
+
+/** Home fixtures read "Al Fatah CC v X". Away and neutral read "X v Al Fatah CC". */
 function teams(f) {
   const opp = esc(f.opponent || "Opponent to be confirmed");
-  return String(f.home_away).toLowerCase().startsWith("h")
+  return isHome(f)
     ? { left: "Al Fatah CC", right: opp }
     : { left: opp, right: "Al Fatah CC" };
 }
+
+/** Badge text for a fixture that has not been played yet. */
+const venueLabel = (f) => (isNeutral(f) ? "Neutral venue" : isHome(f) ? "Home" : "Away");
 
 const SVG = {
   cal:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
@@ -131,9 +138,16 @@ ${squad.map((name, i) => {
     f.format ? [SVG.ball,  `<strong>${esc(f.format)}</strong>`] : null,
   ].filter(Boolean);
 
+  // Per fixture match day poster. Falls back to the club default when a row
+  // has no poster set, so a sheet without the column still builds.
+  const poster = (f.poster || "matchday-wollert-thumb.jpg").trim();
+  const posterAlt = f.opponent
+    ? `Al Fatah Cricket Club match day poster for the fixture against ${f.opponent}`
+    : "Al Fatah Cricket Club match day poster";
+
   return `        <figure class="nextmatch-figure" style="margin:0">
-          <img src="assets/img/matchday-wollert-thumb.jpg"
-               alt="Al Fatah Cricket Club match day poster"
+          <img src="assets/img/${esc(poster)}"
+               alt="${esc(posterAlt)}"
                width="600" height="900" loading="lazy">
         </figure>
 
@@ -167,7 +181,7 @@ function renderFixtureCard(f) {
   const right = isResult
     ? `            <div class="fixture-score">${esc(f.our_score || "")}${f.our_score && f.their_score ? " &nbsp;v&nbsp; " : ""}${esc(f.their_score || "")}</div>
             ${f.result ? `<span class="badge ${won ? "badge-win" : lost ? "badge-loss" : ""}">${esc(f.result)}</span>` : ""}`
-    : `            <span class="badge${f._isNext ? " badge-next" : ""}">${f._isNext ? "Next match" : String(f.home_away).toLowerCase().startsWith("h") ? "Home" : "Away"}</span>`;
+    : `            <span class="badge${f._isNext ? " badge-next" : ""}">${f._isNext ? "Next match" : venueLabel(f)}</span>`;
 
   const venueLine = [f.venue, f.time].filter(Boolean).map(esc).join(" &middot; ");
 
