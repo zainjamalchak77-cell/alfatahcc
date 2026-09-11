@@ -106,8 +106,22 @@ appear. Two minutes of setup prevents most of it. Select the column, then
 | `status` | `upcoming`, `result` |
 | `home_away` | `home`, `away`, `neutral` |
 
-For `date`, set the validation to **Date** so a mistyped day is rejected as it
-is entered. The date format must stay `YYYY-MM-DD`.
+### Fix the date column first, before anything else
+
+This is the one that catches everybody. On an Australian locale Google Sheets
+reformats `2026-09-13` into `13/09/2026` the moment you import, and publishes it
+that way. The build cannot read that format, so **the match silently disappears
+from the website**. A written date like `13 Sep 2026` is worse again: it is read
+as the twelfth, one day early, with no warning at all.
+
+Immediately after importing:
+
+1. Click the `date` column header to select the whole column
+2. **Format -> Number -> Custom date and time**
+3. Set it to `YYYY-MM-DD`, then **Apply**
+
+Check the cells still read `2026-09-13`. Anything else and the fixture will not
+appear. Do this before sharing the sheet, so nobody else inherits the problem.
 
 The build also writes warnings into the Actions log when it sees a status it
 does not recognise, or a match still marked upcoming after its date has passed.
